@@ -1,6 +1,6 @@
 import sqlite3
 def create_db():
-    with sqlite3.connect('rent.db') as db:
+    with sqlite3.connect('database/rent.db') as db:
         cursor = db.cursor()
         cursor.execute("""CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY NOT NULL,
