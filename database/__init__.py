@@ -20,6 +20,7 @@ def create_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 place TEXT,
+                region TEXT,
                 people INTEGER NOT NULL,
                 animals BOOLEAN,
                 image BLOB,
