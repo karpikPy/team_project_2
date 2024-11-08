@@ -26,6 +26,19 @@ def insert_house(name, place, region, price, people, animals, image_path=None):
         print("Error inserting house:", e)
         return None
 
+def verify_us(email, password):
+    try:
+        cursor.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+        user = cursor.fetchone()
+        if user:
+            return user
+        else:
+            return None
+    except sqlite3.Error as error:
+        print("Verification error", error)
+        return None
+
+
 
 user_id = insert_users('test_name', 'test@gmail.com', '+380759910319', 'test123pass')
 house_id = insert_house('TestApartment', 'TestPlace', 'Dnipro', 1200, 10, True, None)
