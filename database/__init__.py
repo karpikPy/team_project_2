@@ -24,18 +24,8 @@ def create_db():
                 people INTEGER NOT NULL,
                 animals BOOLEAN,
                 image BLOB,
-                price INTEGER NOT NULL
-            );
-            """)
-
-            cursor.execute("""
-            CREATE TABLE IF NOT EXISTS booked (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                house_id INTEGER NOT NULL,
-                user_id INTEGER NOT NULL,
-                booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (house_id) REFERENCES houses(id),
-                FOREIGN KEY (user_id) REFERENCES users(id)
+                price INTEGER NOT NULL,
+                booked BOOLEAN
             );
             """)
 
