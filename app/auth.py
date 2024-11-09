@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect('../database/rent.db')
+connection = sqlite3.connect('./database/rent.db')
 cursor = connection.cursor()
 
 def insert_users(username, email, number, password):
