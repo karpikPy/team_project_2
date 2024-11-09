@@ -26,6 +26,19 @@ def insert_house(name, place, region, price, people, animals, image_path, booked
         print("Error inserting house:", e)
         return None
 
+def verify_us(email, password):
+    try:
+        cursor.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+        user = cursor.fetchone()
+        if user:
+            return user
+        else:
+            return None
+    except sqlite3.Error as error:
+        print("Verification error", error)
+        return None
+
+
 
 def set_booked_status(booked, name=None, place=None, region=None):
     try:
