@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+    <title>Dynamic Line of Blocks</title>
+{% endblock title %}
+{% block style %}
+    <style>
+        iframe {
+            position: absolute;
+            z-index: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
+            width: 80%; /* Set width as a percentage of the viewport */
+            max-width: 400px; /* Maximum width to prevent it from getting too large */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative; /* Keep it on top of the iframe */
+            z-index: 1; /* Bring it to the front */
+            margin: 20px auto; /* Center it and add margin */
+            max-height: 80vh; /* Maximum height of the card */
+            overflow-y: auto; /* Enable scrolling if content exceeds height */
+        }
+        .block {
+            width: 50px;
+            height: 50px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+        }
+    </style>
+{% endblock style %}
+{% block frame %}
 
-</body>
-</html>
+    <div class="container">
+        {% for item in items %}
+        <div class="block">{{ item }}</div>
+        {% endfor %}
+    </div>
+{% endblock frame %}
