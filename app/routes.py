@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask import Flask, render_template, request, redirect, url_for, session
 from database import process
-import auth
+from app import auth
 
 app = Flask(__name__)
 
