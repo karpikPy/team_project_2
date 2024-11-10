@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
     <title>Login Page</title>
+    {% endblock title %}
+{% block style %}
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -21,10 +22,7 @@
             min-height: 100vh;
             background-color: #f4f4f9;
         }
-        iframe {
-            position: absolute;
-            z-index: 0;
-        }
+
 
         .login-container {
             background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
@@ -81,8 +79,8 @@
         }
     </style>
 </head>
-<body>
-<iframe src="base.html" style="width: 100%; height: 100vh; border: none;"></iframe>
+{% endblock style %}
+{% block frame %}
     <div class="login-container">
         <h2>Login</h2>
         <form>
@@ -92,5 +90,5 @@
             <a href="sign_in.html">don`t have an account?</a>
         </form>
     </div>
-</body>
-</html>
+{% endblock frame %}
+

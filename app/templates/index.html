@@ -3,9 +3,9 @@
     <title>Dynamic Line of Blocks</title>
 {% endblock title %}
 {% block style %}
-    <style>
+
         iframe {
-            position: absolute;
+            position: center;
             z-index: 0;
         }
         .container {
@@ -30,13 +30,13 @@
             line-height: 50px;
             font-weight: bold;
         }
-    </style>
+
 {% endblock style %}
 {% block frame %}
 
     <div class="container">
-        {% for item in items %}
-        <div class="block">{{ item }}</div>
+        {% for house in houses %}
+        <div class="block">{{ house }}</div>
         {% endfor %}
     </div>
 {% endblock frame %}
