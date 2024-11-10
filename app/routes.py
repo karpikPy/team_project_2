@@ -1,13 +1,12 @@
-from flask import Flask, render_template, request
 from flask import Flask, render_template, request, redirect, url_for, session
 from database import process
 from app import auth
 
 app = Flask(__name__)
+app.secret_key = "your_secret_key"
 
 @app.route("/")
 def index():
-    return render_template("index.html")
     houses = process.houses()
     return render_template("index.html", houses=houses)
 
@@ -15,13 +14,13 @@ def index():
 def login():
     if request.method == "POST":
         email = request.form["email"]
-        password = request.form["email"]
+        password = request.form["password"]
         user = auth.verify_us(email, password)
         if user:
             session["user_id"] = user["id"]
             return redirect(url_for("profile"))
         else:
-            return render_template("login.html")
+            return render_template("login.html", error="Invalid credentials")
 
     return render_template("login.html")
 
@@ -30,7 +29,7 @@ def profile():
     u_id = session.get("user_id")
     if not u_id:
         return redirect(url_for("login"))
-    user = process.id_user(id)
+    user = process.id_user(u_id)
     return render_template("profile.html", user=user)
 
 @app.route("/sign_in", methods=["GET", "POST"])
@@ -43,8 +42,8 @@ def sign_in():
         user_id = auth.insert_users(username, email, number, password)
         if user_id:
             session["user_id"] = user_id
-            return redirect(url_for("profile"))
+            return redirect(url_for("index"))
         else:
-            return render_template("sign_in.html", error="Enrolment failed")
+            return render_template("sign_in.html", error="Enrollment failed")
     return render_template("sign_in.html")
 

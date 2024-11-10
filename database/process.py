@@ -1,6 +1,6 @@
 import sqlite3
 
-def connect_db(name_db="rent.db"):
+def connect_db(name_db="./database/rent.db"):
     conn = sqlite3.connect(name_db)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
@@ -25,10 +25,11 @@ def users():
 
 def id_user(id):
     conn, cursor = connect_db()
-    cursor.execute("SELECT * FROM users WHERE id = ?", id)
+    cursor.execute("SELECT * FROM users WHERE id = ?", (id,))
     user = cursor.fetchone()
     closing(conn)
     return user
+
 
 
 def booked():
