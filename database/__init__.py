@@ -32,7 +32,3 @@ def create_db():
         print("Database and tables created successfully.")
     except sqlite3.Error as e:
         print("Error creating database:", e)
-
-
-create_db()
-
