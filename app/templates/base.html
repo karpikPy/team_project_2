@@ -13,6 +13,9 @@
             padding: 0;
             box-sizing: border-box;
         }
+        navbar bg-body-tertiary{
+            justify-content: center;
+        }
 
 
         body {
@@ -23,17 +26,16 @@
             background-attachment: fixed;
       }
     </style>
-    {% block style %}
-    {% endblock style %}
+
 </head>
 <body>
 
 <nav class="navbar bg-body-tertiary">
   <form class="container-fluid justify-content-start">
-    <a href="index.html" class="btn btn-sm btn-outline-secondary" role="button">Home</a>
-    <a href="profile.html" class="btn btn-sm btn-outline-secondary" role="button">Profile</a>
-      <a href="h_add.html" class="btn btn-sm btn-outline-secondary" role="button">Host house</a>
-     <a href="login.html" class="btn btn-sm btn-outline-secondary" role="button">Log out</a>
+    <a href="/" class="btn btn-sm btn-outline-secondary" role="button">Home</a>
+    <a href="profile" class="btn btn-sm btn-outline-secondary" role="button">Profile</a>
+      <a href="/" class="btn btn-sm btn-outline-secondary" role="button">Host house</a>
+     <a href="{{ url_for('login') }}" class="btn btn-sm btn-outline-secondary" role="button">Log out</a>
 
   </form>
 </nav>

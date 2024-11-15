@@ -30,12 +30,9 @@ def id_user(id):
     closing(conn)
     return user
 
-
-
 def booked():
     conn, cursor = connect_db()
     cursor.execute("SELECT * FROM booked")
     booking = cursor.fetchone()
     closing(conn)
     return booking
-
