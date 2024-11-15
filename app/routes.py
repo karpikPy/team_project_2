@@ -22,7 +22,6 @@ def login():
         email = request.form["email"]
         password = request.form["password"]
         user = auth.verify_us(email, password)
-
         if user:
             session["user_id"] = user[0]
             return redirect(url_for("profile"))
@@ -34,7 +33,6 @@ def login():
 @app.route("/profile")
 def profile():
     u_id = session.get("user_id")
-
     if not u_id:
         return redirect(url_for("login"))
     user = process.id_user(u_id)
