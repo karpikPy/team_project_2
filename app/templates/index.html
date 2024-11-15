@@ -4,10 +4,7 @@
 {% endblock title %}
 {% block style %}
 
-        iframe {
-            position: center;
-            z-index: 0;
-        }
+
         .container {
             background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
             width: 80%; /* Set width as a percentage of the viewport */
@@ -35,8 +32,11 @@
 {% block frame %}
 
     <div class="container">
-        {% for house in houses %}
-        <div class="block">{{ house }}</div>
-        {% endfor %}
+    {% for house in houses %}
+    <form method="POST" action="/">
+        <div class="block">{{ house[0] }}</div>
+        <button type="submit" name="which" value="{{ house[0] }}">More Info</button>
+    </form>
+    {% endfor %}
     </div>
 {% endblock frame %}

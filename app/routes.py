@@ -1,16 +1,20 @@
-from flask import Flask, render_template, request
 from flask import Flask, render_template, request, redirect, url_for, session
-from database import process
-from app import auth
+#from database import process
+#from app import auth
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods = ["POST", "GET"])
 def index():
-    return render_template("login.html")
-    houses = process.houses()
+    #houses = process.houses()
+    houses = [["A"], ["b"], ["c"], ["d"]]
+    if request.method == "POST":
+        which = request.form.get("which")
+        #info = "" KIRIL day tut infu from house z zminnoyi "which"
+        info = [3, 'kazapobumbilka-4', "kazapobombilskiy region", 4, True, "https://i.natgeofe.com/n/4cebbf38-5df4-4ed0-864a-4ebeb64d33a4/NationalGeographic_1468962_3x4.jpg", 999, False]
+        return render_template("h_details.html", info = info)
     return render_template("index.html", houses=houses)
-
+"""
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -47,4 +51,7 @@ def sign_in():
         else:
             return render_template("sign_in.html", error="Enrolment failed")
     return render_template("sign_in.html")
-
+"""
+@app.route("/h_add")
+def h_add():
+    return render_template("h_add.html")

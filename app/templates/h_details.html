@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+{% block title %}
   <title>Profile Page</title>
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    iframe {
-    position: absolute;
-    z-index: 0;
-    }
+{% endblock title %}
+{% block style %}
 
     body {
       font-family: Arial, sans-serif;
@@ -82,32 +69,26 @@
       margin: 0 10px;
     }
 
-    .social-media a:hover {
-      color: #0077cc;
-    }
-  </style>
-</head>
-<body>
-  <iframe src="base.html" style="width: 100%; height: 100vh; border: none;"></iframe>
+{% endblock style %}
+{% block frame %}
   <div class="profile-card">
-    <img src="profile.jpg" alt="Profile Picture">
-    <p>family</p>
-    <h2>John Doe</h2>
+    <img src=info[6] alt="Profile Picture">
+    {% if info[0] == None %}
+      <p>House</p>
+      {% else %}
+      <p>apartment adress: {{ info[0] }}</p>
+      {% endif %}
+
+    {% if info[1] == None %}
+      <p>not found</p>
+      {% else %}
+      <p>apartment adress: {{ info[1] }}</p>
+      {% endif %}
     <h3>3 people</h3>
 
     <ul class="contact-info">
       <li>Email: john.doe@example.com</li>
       <li>Phone: +123 456 7890</li>
     </ul>
-
-
-
-    <div class="social-media">
-      <a href="#" target="_blank">Facebook</a>
-      <a href="#" target="_blank">Twitter</a>
-      <a href="#" target="_blank">Instagram</a>
-    </div>
   </div>
-
-</body>
-</html>
+{% endblock frame %}
