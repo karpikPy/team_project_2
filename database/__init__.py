@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def create_db():
     try:
         with sqlite3.connect('rent.db') as db:
@@ -23,7 +24,7 @@ def create_db():
                 region TEXT,
                 people INTEGER NOT NULL,
                 animals BOOLEAN,
-                image BLOB,
+                image TEXT,
                 price INTEGER NOT NULL,
                 booked BOOLEAN
             );
@@ -35,4 +36,3 @@ def create_db():
 
 
 create_db()
-
