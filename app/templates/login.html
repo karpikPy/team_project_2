@@ -1,30 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
     {% block title %}
     <title>Login Page</title>
     {% endblock title %}
 {% block style %}
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4f4f9;
-        }
-
 
         .login-container {
             background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
@@ -49,7 +27,7 @@
         }
 
 
-        .login-container input[type="text"],
+        .login-container input[type="email"],
         .login-container input[type="password"] {
             width: 100%;
             padding: 12px;
@@ -79,16 +57,13 @@
         .login-container .forgot-password:hover {
             text-decoration: underline;
         }
-    </style>
-</head>
 {% endblock style %}
 {% block frame %}
     <div class="login-container">
         <h2>Login</h2>
-        <form method="POST" >
-            <input type="text" name="email" placeholder="Email" required>
+        <form action = "/login" method = "POST">
+            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-
             <button type="submit">Login</button>
             <a href="{{ url_for('sign_in') }}">don`t have an account?</a>
         </form>

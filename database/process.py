@@ -1,5 +1,8 @@
 import sqlite3
 
+connection = sqlite3.connect('./database/rent.db', check_same_thread=False)
+cursor = connection.cursor()
+
 def connect_db(name_db="./database/rent.db"):
     conn = sqlite3.connect(name_db)
     conn.row_factory = sqlite3.Row
@@ -36,3 +39,18 @@ def booked():
     booking = cursor.fetchone()
     closing(conn)
     return booking
+
+def get_house_id(house_id):
+    conn, cursor = connect_db()
+    try:
+        cursor.execute("SELECT * FROM houses WHERE id = ?", (house_id,))
+        house = cursor.fetchone()
+        return house if house else None
+    except sqlite3.Error as e:
+        print(f"Error fetching house with ID {house_id}: {e}")
+        return None
+    finally:
+        closing(conn)
+
+def get_house_info(id):
+    return cursor.execute("SELECT * FROM houses WHERE id = ?", (id))

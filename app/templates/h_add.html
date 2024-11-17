@@ -1,10 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+    <title>h_add Page</title>
+{% endblock title %}
+    {% block style %}
 
-</body>
-</html>
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
+            width: 80%; /* Set width as a percentage of the viewport */
+            max-width: 400px; /* Maximum width to prevent it from getting too large */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative; /* Keep it on top of the iframe */
+            z-index: 1; /* Bring it to the front */
+            margin: 20px auto; /* Center it and add margin */
+            max-height: 80vh; /* Maximum height of the card */
+            overflow-y: auto; /* Enable scrolling if content exceeds height */
+        }
+
+
+        .login-container h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+
+        .login-container input[type="text"],
+        .login-container input[type="number"],
+        .login-container input[type="checkbox"]{
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0077cc;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .login-container button:hover {
+            background-color: #005fa3;
+        }
+
+        .login-container .log-in:hover {
+            text-decoration: underline;
+        }
+        .apart,
+        .pets,
+        .img{
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10%;
+        }
+        .pets2{
+        display: flex;
+      justify-content: center;
+      gap: 5px;
+        }
+{% endblock style %}
+
+{% block frame %}
+    <div class="login-container">
+        <h2>Add a House</h2>
+        <form action = "h_add" method = "POST">
+            <div class = "apart">
+                <h6>if it`s appartament put the number, if it`s a house leave it empty:</h6>
+                <input type="text" name="appartament" placeholder="appartament number/house">
+            </div>
+            <input type="text" name="adress" placeholder="Adress" required>
+            <input type="text" name="region" placeholder="region" required>
+            <input type="number" name="people" placeholder="people" required>
+            <div class = "pets">
+                <H5 >Are there any pets?</H5>
+
+                <div class = "pets2">
+                    <div><label for = "bla"> yes</label><input type="checkbox" id = "bla" name="pets" value="True"></div>
+                    <div><label for = "nossir"> no</label><input type="checkbox" id = "nossir" name="pets" value="False"></div>
+                </div>
+            </div>
+            <input type="number" name="price" placeholder="Price" required>
+            <div class = "img">
+                <h5 for = "imga">upload a picture of the house</h5>
+                <input type="file" name="image" id="imga" placeholder="Image" accept="image/*" required>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+
+    </div>
+{% endblock frame %}

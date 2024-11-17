@@ -25,18 +25,19 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
       }
+      {% block style %}
+      {% endblock style %}
     </style>
-    {% block style %}
-    {% endblock style %}
+
 </head>
 <body>
 
 <nav class="navbar bg-body-tertiary">
   <form class="container-fluid justify-content-start">
-    <a href="/" class="btn btn-sm btn-outline-secondary" role="button">Home</a>
-    <a href="profile" class="btn btn-sm btn-outline-secondary" role="button">Profile</a>
-      <a href="/" class="btn btn-sm btn-outline-secondary" role="button">Host house</a>
-     <a href="{{ url_for('login') }}" class="btn btn-sm btn-outline-secondary" role="button">Log out</a>
+    <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-secondary" role="button">Home</a>
+    <a href="{{ url_for('profile') }}" class="btn btn-sm btn-outline-secondary" role="button">Profile</a>
+    <a href="{{ url_for('h_add') }}" class="btn btn-sm btn-outline-secondary" role="button">Host house</a>
+    <a href="{{ url_for('login') }}" class="btn btn-sm btn-outline-secondary" role="button">Log out</a>
 
   </form>
 </nav>

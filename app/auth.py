@@ -82,5 +82,5 @@ def set_booked_status(booked, name=None, place=None, region=None):
 
 #user_id = insert_users('test_name', 'test@gmail.com', '+380759910319', 'test123pass')
 #house_id = insert_house('TestApartment', 'TestPlace', 'Dnipro', 1200, 10, True, None, False)
-set_booked_status(True, name="TestApartment", place="TestPlace")
+#set_booked_status(True, name="TestApartment", place="TestPlace")
 connection.commit()

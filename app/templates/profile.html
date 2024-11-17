@@ -1,52 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+{% block title %}
   <title>Profile Page</title>
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    iframe {
-    position: absolute;
-    z-index: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f4f4f9;
-    }
+{% endblock title %}
+{% block style %}
 
 
     .profile-card {
+gap: 20px;
       background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
-            width: 80%; /* Set width as a percentage of the viewport */
-            max-width: 400px; /* Maximum width to prevent it from getting too large */
+            width: 500px;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
-            position: relative; /* Keep it on top of the iframe */
-            z-index: 1; /* Bring it to the front */
-            margin: 20px auto; /* Center it and add margin */
-            max-height: 80vh; /* Maximum height of the card */
-            overflow-y: auto; /* Enable scrolling if content exceeds height */
+            z-index: 1;
+            margin: 20px auto;
+            overflow-y: auto;
     }
 
+    .text {
+        background-color: #f9f9f9; /* Light background for contrast */
+        padding: 15px; /* Space inside the box */
+        border: 1px solid #ddd; /* Subtle border */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        font-family: Arial, sans-serif; /* Clean font */
+        font-size: 14px; /* Adjust text size */
+        color: #333; /* Text color */
+        line-height: 1.5; /* Better readability */
+    }
 
-    .profile-card img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+    .text p {
+        margin: 5px 0; /* Space between paragraphs */
+    }
+
+    img {
+      width: 350px;
+      height: auto;
+      border-radius: 15%;
       margin-bottom: 15px;
     }
 
@@ -56,50 +47,79 @@
       color: #333;
     }
 
-    .profile-card p {
-      font-size: 16px;
-      color: #777;
-      margin: 10px 0 20px;
+    p {
+    font-size: 16px; /* Text size for each paragraph */
+            line-height: 1.5; /* Line height for better readability */
+            margin: 10px 0; /* Margin between each paragraph */
+            color: #555; /* Soft text color */
     }
+/* Basic Button Styling */
+.book-button {
+    background-color: #007bff; /* Primary blue color for the button */
+    color: white;              /* White text color */
+    font-size: 16px;           /* Font size for the button text */
+    font-weight: bold;         /* Bold text to make it stand out */
+    padding: 12px 24px;        /* Padding for the button */
+    border: none;              /* Remove default border */
+    border-radius: 8px;        /* Rounded corners for a smooth look */
+    cursor: pointer;          /* Cursor changes to a pointer on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.book-button:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+    transform: scale(1.05);     /* Slight zoom-in effect */
+}
 
 
-    .contact-info {
-      list-style-type: none;
-      margin-bottom: 20px;
-    }
+.book-button:focus {
+    outline: none;             /* Remove default focus outline */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Glow effect on focus */
+}
 
-    .contact-info li {
-      font-size: 14px;
-      color: #555;
-      margin: 5px 0;
-    }
+.book-button:active {
+    background-color: #004085; /* Even darker blue when the button is pressed */
+    transform: scale(1);        /* Remove zoom-in effect when pressed */
+}
+}
 
 
-    .social-media a {
-      text-decoration: none;
-      color: #555;
-      font-size: 18px;
-      margin: 0 10px;
-    }
+{% endblock style %}
+{% block frame %}
 
-    .social-media a:hover {
-      color: #0077cc;
-    }
-  </style>
-</head>
-<body>
-  <iframe src="base.html" style="width: 100%; height: 100vh; border: none;"></iframe>
   <div class="profile-card">
-    <img src="profile.jpg" alt="Profile Picture">
+      {% if info[4] == None or info | length == 3 %}
+    <div>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small_2x/user-profile-icon-free-vector.jpg"
+             alt="Default profile image">
+    </div>
+    {% else %}
+    <div>
+        <img src="{{ info[3] }}" alt="User profile image">
+    </div>
+    {% endif %}
+        <h3>Account Information</h3>
 
-    <h2>{{ info[1] }}</h2>
+        {% if info[0] == None %}
+        <p><strong>Username </strong>unavaible</p>
+        {% else %}
+        <p><strong>Username:</strong> {{ info[1] }}</p>
+        {% endif %}
 
-    <ul class="contact-info">
-      <li>{{ info[2] }}</li>
-      <li>{{ info[3] }}</li>
-    </ul>
+        {% if info[1] == None %}
+        <p><strong>email:</strong> No data</p>
+        {% else %}
+        <p><strong>email:</strong> {{ info[2] }}</p>
+        {% endif %}
+
+        {% if info[2] == None %}
+        <p><strong>phone number:</strong> No data</p>
+        {% else %}
+        <p><strong>phone number:</strong> {{ info[3] }}</p>
+        {% endif %}
+      <a href="{{ url_for('login') }}" class="btn btn-sm btn-outline-secondary" role="button">Log out</a>
+    </div>
+
 
   </div>
-
-</body>
-</html>
+{% endblock frame %}
