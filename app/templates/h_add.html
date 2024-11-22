@@ -74,7 +74,7 @@
 {% block frame %}
     <div class="login-container">
         <h2>Add a House</h2>
-        <form action = "h_add" method = "POST">
+        <form action = "h_add" method = "POST" enctype="multipart/form-data">
             <div class = "apart">
                 <h6>if it`s appartament put the number, if it`s a house leave it empty:</h6>
                 <input type="text" name="appartament" placeholder="appartament number/house">
@@ -83,7 +83,7 @@
             <input type="text" name="region" placeholder="region" required>
             <input type="number" name="people" placeholder="people" required>
             <div class = "pets">
-                <H5 >Are there any pets?</H5>
+                <H5>Are there any pets?</H5>
 
                 <div class = "pets2">
                     <div><label for = "bla"> yes</label><input type="checkbox" id = "bla" name="pets" value="True"></div>
@@ -92,7 +92,7 @@
             </div>
             <input type="number" name="price" placeholder="Price" required>
             <div class = "img">
-                <h5 for = "imga">upload a picture of the house</h5>
+                <label for = "imga">upload a picture of the house</label>
                 <input type="file" name="image" id="imga" placeholder="Image" accept="image/*" required>
             </div>
             <button type="submit">Add</button>

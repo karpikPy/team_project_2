@@ -33,7 +33,9 @@
 
     <div class="container">
     {% for house in houses %}
-    <form method="POST" action="/">
+    <div><img src="data:image/jpeg;base64, {{ house[6] }}" alt="{{ house[6] }}"></div>
+    <p>{{ house[2] }}</p>
+    <form action="{{ url_for('house_details', house_id=house[0]) }}">
         <div class="block">{{ house[0] }}</div>
         <button type="submit" name="which" value="{{ house[0] }}">More Info</button>
     </form>

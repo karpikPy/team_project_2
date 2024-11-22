@@ -23,7 +23,7 @@ def create_db():
                 region TEXT,
                 people INTEGER NOT NULL,
                 animals BOOLEAN,
-                image TEXT,
+                image BLOB,
                 price INTEGER NOT NULL,
                 booked BOOLEAN
             );

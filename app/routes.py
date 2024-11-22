@@ -1,17 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from database import process
 from app import auth
-import os
-from werkzeug.utils import secure_filename
+import base64
+#import os
+#from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'static/uploads'  # Define where uploaded files will be stored
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+#UPLOAD_FOLDER = 'static/uploads'  # Define where uploaded files will be stored
+#ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
 
-app = Flask(__name__, static_folder='static')
+#app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 app.secret_key = "your_secret_key"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -25,6 +27,11 @@ def index():
                 """.format(url_for('h_add'))
 
     houses = houses0
+    all_houses = list()
+    for house in houses:
+        home = list(house)
+        home[6] = base64.b64encode(house[6]).decode("utf-8")
+        all_houses.append(home)
     #print(houses)
 
     if request.method == "POST":
@@ -36,7 +43,7 @@ def index():
         else:
             return "House not found", 404
 
-    return render_template("index.html", houses=houses)
+    return render_template("index.html", houses=all_houses)
 @app.route("/login", methods=["GET", "POST"])
 def login():
     session.clear()
@@ -77,8 +84,8 @@ def sign_in():
             return render_template("sign_in.html", error="Enrollment failed")
     return render_template("sign_in.html")
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+#def allowed_file(filename):
+#    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/h_add", methods=["POST", "GET"])
@@ -95,15 +102,18 @@ def h_add():
         pets = request.form.get("pets")
         price = request.form.get("price")
         booked = False
-        image = request.form.get("image")
+        image = request.files["image"]
+        image_data = image.read()
         print(appartament, adress, region, price, people, pets, image, booked)
-        auth.insert_house(appartament, adress, region, price, people, pets, image, booked)
+        auth.insert_house(appartament, adress, region, price, people, pets, image_data, booked)
     return render_template("h_add.html")
 
 @app.route("/house/<int:house_id>")
 def house_details(house_id):
-    house = process.get_house_id(house_id)
-    #print(type(house[6]))
+    house_fix = process.get_house_id(house_id)
+    house = list(house_fix)
+    print(house)
+    house[6] = base64.b64encode(house[6]).decode("utf-8")
     if not house:
         return render_template("h_details.html", error="House not found")
-    return render_template("h_details.html", house=house)
+    return render_template("h_details.html", info=house)

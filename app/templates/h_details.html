@@ -88,7 +88,7 @@ gap: 20px;
 {% block frame %}
 
   <div class="profile-card">
-      <div><img src="{{ info[6] }}" alt="{{ info[6] }}"></div>
+      <div><img src="data:image/jpeg;base64, {{ info[6] }}" alt="{{ info[6] }}"></div>
     <div class="text">
         <h3>House Information</h3>
 
@@ -129,7 +129,7 @@ gap: 20px;
         {% endif %}
     </div>
 
-{% if info[7] == False %}
+{% if info[7] == 0 %}
       <button class="book-button" formaction="/h_details" formmethod="POST" name = "house" value = "{{ house }}">Book Now</button>
         {% else %}
         <h2> Booked</h2>
