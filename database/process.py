@@ -53,4 +53,12 @@ def get_house_id(house_id):
         closing(conn)
 
 def get_house_info(id):
-    return cursor.execute("SELECT * FROM houses WHERE id = ?", (id))
+    conn, cursor = connect_db()
+    try:
+        cursor.execute("SELECT * FROM houses WHERE id = ?", (id,))
+        return cursor.fetchone()
+    except sqlite3.Error as e:
+        print(f"Error fetching house info: {e}")
+        return None
+    finally:
+        closing(conn)

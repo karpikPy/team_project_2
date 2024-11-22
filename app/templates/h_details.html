@@ -88,32 +88,32 @@ gap: 20px;
 {% block frame %}
 
   <div class="profile-card">
-      <div><img src="{{ info[5] }}" alt="{{ info[5] }}"></div>
+      <div><img src="{{ info[6] }}" alt="{{ info[6] }}"></div>
     <div class="text">
         <h3>House Information</h3>
 
         {% if info[0] == None %}
         <p><strong>Type:</strong> House</p>
         {% else %}
-        <p><strong>Apartment:</strong> {{ info[0] }}</p>
+        <p><strong>Apartment:</strong> {{ info[1] }}</p>
         {% endif %}
 
         {% if info[1] == None %}
         <p><strong>Address:</strong> No data</p>
         {% else %}
-        <p><strong>Address:</strong> {{ info[1] }}</p>
+        <p><strong>Address:</strong> {{ info[2] }}</p>
         {% endif %}
 
         {% if info[2] == None %}
         <p><strong>Region:</strong> No data</p>
         {% else %}
-        <p><strong>Region:</strong> {{ info[2] }}</p>
+        <p><strong>Region:</strong> {{ info[3] }}</p>
         {% endif %}
 
         {% if info[3] == None %}
         <p><strong>People:</strong> No data</p>
         {% else %}
-        <p><strong>People:</strong> {{ info[3] }}</p>
+        <p><strong>People:</strong> {{ info[4] }}</p>
         {% endif %}
 
         {% if info[3] == False %}
@@ -125,11 +125,10 @@ gap: 20px;
         {% if info[6] == None %}
         <p><strong>Price:</strong> No data</p>
         {% else %}
-        <p><strong>Price:</strong> {{ info[6] }}</p>
+        <p><strong>Price:</strong> {{ info[7] }}</p>
         {% endif %}
     </div>
 
-《ㅊㅎ[MaX]ㅕㅈ》, [17.11.2024 15:06]
 {% if info[7] == False %}
       <button class="book-button" formaction="/h_details" formmethod="POST" name = "house" value = "{{ house }}">Book Now</button>
         {% else %}
