@@ -3,7 +3,6 @@
     <title>Add House</title>
 {% endblock title %}
 {% block style %}
-
     .add-house-container {
         background-color: rgba(42, 42, 42, 0.9); /* Slightly transparent for overlay effect */
         width: 80%; /* Set width as a percentage of the viewport */
@@ -55,7 +54,7 @@
     .add-house-container .section-title {
         font-size: 16px;
         font-weight: bold;
-        color: #555;
+        color: #ffffff;
         margin-bottom: 10px;
         text-align: left;
     }
@@ -68,19 +67,35 @@
     }
 
     .add-house-container .checkbox-container label {
-        margin: 0 5px;
         font-size: 14px;
+        color: #fff; /* Set label color to white */
+        display: inline-block;
+    }
+
+    .add-house-container input[type="checkbox"] {
+        accent-color: #4fb3ff; /* Change checkbox color */
+        margin-right: 10px;
+    }
+
+    .add-house-container .checkbox-container label:first-child {
+        color: #28a745; /* Green for 'Yes' */
+    }
+
+    .add-house-container .checkbox-container label:last-child {
+        color: #dc3545; /* Red for 'No' */
     }
 
     .file-upload-container {
         text-align: left;
         margin-top: 15px;
+        color: #ffffff;
     }
 
     .file-upload-container label {
         display: block;
         margin-bottom: 5px;
         font-size: 14px;
+        color: #ffffff;
     }
 
 {% endblock style %}
@@ -90,7 +105,6 @@
         <h2>Add a House</h2>
         <form action="h_add" method="POST" enctype="multipart/form-data">
             <div>
-                <div class="section-title">If it’s an apartment, put the number. If it’s a house, leave it empty:</div>
                 <input type="text" name="appartament" placeholder="Apartment / House number">
             </div>
             <div>

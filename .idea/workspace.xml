@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0f727370-a29a-49cb-9ac6-2dc193056821" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/h_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/h_add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/h_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/h_details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/sign_in.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/sign_in.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/rent.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/rent.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
