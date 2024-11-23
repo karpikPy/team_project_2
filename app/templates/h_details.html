@@ -1,139 +1,90 @@
 {% extends "base.html" %}
 {% block title %}
-  <title>Profile Page</title>
+  <title>House Details</title>
 {% endblock title %}
 {% block style %}
 
-
-    .profile-card {
-gap: 20px;
-      background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
-            width: 500px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            z-index: 1;
-            margin: 20px auto;
-            overflow-y: auto;
+    .details-card {
+        background-color: rgba(42, 42, 42, 0.9); /* Slightly transparent for overlay effect */
+        width: 500px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        z-index: 1;
+        margin: 20px auto;
+        overflow-y: auto;
     }
 
-    .text {
-        background-color: #f9f9f9; /* Light background for contrast */
-        padding: 15px; /* Space inside the box */
-        border: 1px solid #ddd; /* Subtle border */
-        border-radius: 8px; /* Rounded corners */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-        font-family: Arial, sans-serif; /* Clean font */
-        font-size: 14px; /* Adjust text size */
-        color: #333; /* Text color */
-        line-height: 1.5; /* Better readability */
+    .details-card img {
+        width: 350px;
+        height: auto;
+        border-radius: 15%;
+        margin-bottom: 15px;
     }
 
-    .text p {
-        margin: 5px 0; /* Space between paragraphs */
+    .details-card h3 {
+        font-size: 24px;
+        color: #4fb3ff;
+        margin-bottom: 15px;
     }
 
-    img {
-      width: 350px;
-      height: auto;
-      border-radius: 15%;
-      margin-bottom: 15px;
+    .details-card p {
+        font-size: 16px; /* Text size for each paragraph */
+        line-height: 1.5; /* Line height for better readability */
+        margin: 10px 0; /* Margin between each paragraph */
+        color: #555; /* Soft text color */
     }
 
-
-    .profile-card h2 {
-      font-size: 24px;
-      color: #333;
+    /* Reuse Button Styling */
+    .book-button {
+        background-color: #007bff; /* Primary blue color for the button */
+        color: white;              /* White text color */
+        font-size: 16px;           /* Font size for the button text */
+        font-weight: bold;         /* Bold text to make it stand out */
+        padding: 12px 24px;        /* Padding for the button */
+        border: none;              /* Remove default border */
+        border-radius: 8px;        /* Rounded corners for a smooth look */
+        cursor: pointer;          /* Cursor changes to a pointer on hover */
+        transition: all 0.3s ease; /* Smooth transition for hover effect */
     }
 
-    p {
-    font-size: 16px; /* Text size for each paragraph */
-            line-height: 1.5; /* Line height for better readability */
-            margin: 10px 0; /* Margin between each paragraph */
-            color: #555; /* Soft text color */
+    .book-button:hover {
+        background-color: #0056b3; /* Darker blue for hover effect */
+        transform: scale(1.05);     /* Slight zoom-in effect */
     }
-/* Basic Button Styling */
-.book-button {
-    background-color: #007bff; /* Primary blue color for the button */
-    color: white;              /* White text color */
-    font-size: 16px;           /* Font size for the button text */
-    font-weight: bold;         /* Bold text to make it stand out */
-    padding: 12px 24px;        /* Padding for the button */
-    border: none;              /* Remove default border */
-    border-radius: 8px;        /* Rounded corners for a smooth look */
-    cursor: pointer;          /* Cursor changes to a pointer on hover */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
 
-.book-button:hover {
-    background-color: #0056b3; /* Darker blue for hover effect */
-    transform: scale(1.05);     /* Slight zoom-in effect */
-}
+    .book-button:focus {
+        outline: none;             /* Remove default focus outline */
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Glow effect on focus */
+    }
 
-
-.book-button:focus {
-    outline: none;             /* Remove default focus outline */
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Glow effect on focus */
-}
-
-.book-button:active {
-    background-color: #004085; /* Even darker blue when the button is pressed */
-    transform: scale(1);        /* Remove zoom-in effect when pressed */
-}
-}
-
+    .book-button:active {
+        background-color: #004085; /* Even darker blue when the button is pressed */
+        transform: scale(1);        /* Remove zoom-in effect when pressed */
+    }
 
 {% endblock style %}
 {% block frame %}
 
-  <div class="profile-card">
-      <div><img src="data:image/jpeg;base64, {{ info[6] }}" alt="{{ info[6] }}"></div>
-    <div class="text">
-        <h3>House Information</h3>
+  <div class="details-card">
+      <div>
+          <img src="data:image/jpeg;base64, {{ info[6] }}" alt="{{ info[6] }}">
+      </div>
+      <h3>House Details</h3>
 
-        {% if info[0] == None %}
-        <p><strong>Type:</strong> House</p>
-        {% else %}
-        <p><strong>Apartment:</strong> {{ info[1] }}</p>
-        {% endif %}
+      <p><strong>Number:</strong> {{ info[1] if info[1] else "House" }}</p>
+      <p><strong>Address:</strong> {{ info[2] if info[2] else "No data" }}</p>
+      <p><strong>Region:</strong> {{ info[3] if info[3] else "No data" }}</p>
+      <p><strong>People:</strong> {{ info[4] if info[4] else "No data" }}</p>
+      <p><strong>Pets:</strong> {{ "Allowed" if info[5] else "No pets" }}</p>
+      <p><strong>Price:</strong> ${{ info[7] if info[7] else "No data" }}</p>
 
-        {% if info[1] == None %}
-        <p><strong>Address:</strong> No data</p>
-        {% else %}
-        <p><strong>Address:</strong> {{ info[2] }}</p>
-        {% endif %}
-
-        {% if info[2] == None %}
-        <p><strong>Region:</strong> No data</p>
-        {% else %}
-        <p><strong>Region:</strong> {{ info[3] }}</p>
-        {% endif %}
-
-        {% if info[3] == None %}
-        <p><strong>People:</strong> No data</p>
-        {% else %}
-        <p><strong>People:</strong> {{ info[4] }}</p>
-        {% endif %}
-
-        {% if info[3] == False %}
-        <p><strong>Pets:</strong> No pets</p>
-        {% else %}
-        <p><strong>Pets:</strong> Allowed</p>
-        {% endif %}
-
-        {% if info[6] == None %}
-        <p><strong>Price:</strong> No data</p>
-        {% else %}
-        <p><strong>Price:</strong> {{ info[7] }}</p>
-        {% endif %}
-    </div>
-
-{% if info[7] == 0 %}
-      <button class="book-button" formaction="/h_details" formmethod="POST" name = "house" value = "{{ house }}">Book Now</button>
-        {% else %}
-        <h2> Booked</h2>
-        {% endif %}
-
+      {% if info[8] == 0 %}
+      <button class="book-button" formaction="/h_details" formmethod="POST" name="house" value="{{ house_id }}">Book Now</button>
+      {% else %}
+      <h3 style="color: #ff0000;">Already Booked</h3>
+      {% endif %}
   </div>
+
 {% endblock frame %}

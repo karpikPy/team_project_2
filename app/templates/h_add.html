@@ -1,102 +1,126 @@
 {% extends "base.html" %}
 {% block title %}
-    <title>h_add Page</title>
+    <title>Add House</title>
 {% endblock title %}
-    {% block style %}
+{% block style %}
 
-        .login-container {
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
-            width: 80%; /* Set width as a percentage of the viewport */
-            max-width: 400px; /* Maximum width to prevent it from getting too large */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative; /* Keep it on top of the iframe */
-            z-index: 1; /* Bring it to the front */
-            margin: 20px auto; /* Center it and add margin */
-            max-height: 80vh; /* Maximum height of the card */
-            overflow-y: auto; /* Enable scrolling if content exceeds height */
-        }
-
-
-        .login-container h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-
-        .login-container input[type="text"],
-        .login-container input[type="number"],
-        .login-container input[type="checkbox"]{
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-
-        .login-container button {
-            width: 100%;
-            padding: 12px;
-            background-color: #0077cc;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .login-container button:hover {
-            background-color: #005fa3;
-        }
-
-        .login-container .log-in:hover {
-            text-decoration: underline;
-        }
-        .apart,
-        .pets,
-        .img{
+    .add-house-container {
+        background-color: rgba(42, 42, 42, 0.9); /* Slightly transparent for overlay effect */
+        width: 80%; /* Set width as a percentage of the viewport */
+        max-width: 400px; /* Maximum width to prevent it from getting too large */
+        padding: 20px;
+        border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 10%;
-        }
-        .pets2{
+        text-align: center;
+        z-index: 1; /* Bring it to the front */
+        margin: 20px auto; /* Center it and add margin */
+        max-height: 80vh; /* Maximum height of the card */
+        overflow-y: auto; /* Enable scrolling if content exceeds height */
+    }
+
+    .add-house-container h2 {
+        font-size: 24px;
+        color: #4fb3ff;
+        margin-bottom: 20px;
+    }
+
+    .add-house-container input[type="text"],
+    .add-house-container input[type="number"],
+    .add-house-container input[type="file"],
+    .add-house-container input[type="checkbox"] {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .add-house-container button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff; /* Consistent primary color */
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .add-house-container button:hover {
+        background-color: #0056b3;
+    }
+
+    .add-house-container .section-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .add-house-container .checkbox-container {
         display: flex;
-      justify-content: center;
-      gap: 5px;
-        }
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .add-house-container .checkbox-container label {
+        margin: 0 5px;
+        font-size: 14px;
+    }
+
+    .file-upload-container {
+        text-align: left;
+        margin-top: 15px;
+    }
+
+    .file-upload-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
 {% endblock style %}
 
 {% block frame %}
-    <div class="login-container">
+    <div class="add-house-container">
         <h2>Add a House</h2>
-        <form action = "h_add" method = "POST" enctype="multipart/form-data">
-            <div class = "apart">
-                <h6>if it`s appartament put the number, if it`s a house leave it empty:</h6>
-                <input type="text" name="appartament" placeholder="appartament number/house">
+        <form action="h_add" method="POST" enctype="multipart/form-data">
+            <div>
+                <div class="section-title">If it’s an apartment, put the number. If it’s a house, leave it empty:</div>
+                <input type="text" name="appartament" placeholder="Apartment / House number">
             </div>
-            <input type="text" name="adress" placeholder="Adress" required>
-            <input type="text" name="region" placeholder="region" required>
-            <input type="number" name="people" placeholder="people" required>
-            <div class = "pets">
-                <H5>Are there any pets?</H5>
-
-                <div class = "pets2">
-                    <div><label for = "bla"> yes</label><input type="checkbox" id = "bla" name="pets" value="True"></div>
-                    <div><label for = "nossir"> no</label><input type="checkbox" id = "nossir" name="pets" value="False"></div>
+            <div>
+                <input type="text" name="adress" placeholder="Address" required>
+            </div>
+            <div>
+                <input type="text" name="region" placeholder="Region" required>
+            </div>
+            <div>
+                <input type="number" name="people" placeholder="Number of people" required>
+            </div>
+            <div class="pets-container">
+                <div class="section-title">Are pets allowed?</div>
+                <div class="checkbox-container">
+                    <label>
+                        <input type="checkbox" name="pets" value="True"> Yes
+                    </label>
+                    <label>
+                        <input type="checkbox" name="pets" value="False"> No
+                    </label>
                 </div>
             </div>
-            <input type="number" name="price" placeholder="Price" required>
-            <div class = "img">
-                <label for = "imga">upload a picture of the house</label>
-                <input type="file" name="image" id="imga" placeholder="Image" accept="image/*" required>
+            <div>
+                <input type="number" name="price" placeholder="Price (USD)" required>
+            </div>
+            <div class="file-upload-container">
+                <label for="image-upload">Upload a picture of the house:</label>
+                <input type="file" id="image-upload" name="image" accept="image/*" required>
             </div>
             <button type="submit">Add</button>
         </form>
-
     </div>
 {% endblock frame %}

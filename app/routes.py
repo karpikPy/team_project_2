@@ -46,18 +46,20 @@ def index():
     return render_template("index.html", houses=all_houses)
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    session.clear()
+    session.clear()  # Clear any existing session data
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        user = auth.verify_us(email, password)
-        if user:
-            session["user_id"] = user[0]
+        user = auth.verify_us(email, password)  # Check user credentials
+
+        if user:  # If credentials are valid
+            session["user_id"] = user[0]  # Set the user session
             return redirect(url_for("profile"))
-        else:
-            return render_template("login.html", error="Invalid credentials")
+        else:  # If credentials are invalid
+            return render_template("login.html", error="Invalid credentials")  # Show error
 
     return render_template("login.html")
+
 
 @app.route("/profile")
 def profile():

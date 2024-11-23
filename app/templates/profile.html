@@ -1,21 +1,21 @@
 {% extends "base.html" %}
+
 {% block title %}
   <title>Profile Page</title>
 {% endblock title %}
+
 {% block style %}
-
-
     .profile-card {
-gap: 20px;
-      background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
-            width: 500px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            z-index: 1;
-            margin: 20px auto;
-            overflow-y: auto;
+        gap: 20px;
+        background-color: rgba(42, 42, 42, 0.9); /* Slightly transparent for overlay effect */
+        width: 500px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        z-index: 1;
+        margin: 20px auto;
+        overflow-y: auto;
     }
 
     .text {
@@ -26,7 +26,7 @@ gap: 20px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
         font-family: Arial, sans-serif; /* Clean font */
         font-size: 14px; /* Adjust text size */
-        color: #333; /* Text color */
+        color: #4fb3ff; /* Text color */
         line-height: 1.5; /* Better readability */
     }
 
@@ -35,91 +35,76 @@ gap: 20px;
     }
 
     img {
-      width: 350px;
-      height: auto;
-      border-radius: 15%;
-      margin-bottom: 15px;
+        width: 350px;
+        height: auto;
+        border-radius: 15%;
+        margin-bottom: 15px;
     }
 
-
     .profile-card h2 {
-      font-size: 24px;
-      color: #333;
+        font-size: 24px;
+        color: #4fb3ff;
     }
 
     p {
-    font-size: 16px; /* Text size for each paragraph */
-            line-height: 1.5; /* Line height for better readability */
-            margin: 10px 0; /* Margin between each paragraph */
-            color: #555; /* Soft text color */
+        font-size: 16px; /* Text size for each paragraph */
+        line-height: 1.5; /* Line height for better readability */
+        margin: 10px 0; /* Margin between each paragraph */
+        color: #555; /* Soft text color */
     }
-/* Basic Button Styling */
-.book-button {
-    background-color: #007bff; /* Primary blue color for the button */
-    color: white;              /* White text color */
-    font-size: 16px;           /* Font size for the button text */
-    font-weight: bold;         /* Bold text to make it stand out */
-    padding: 12px 24px;        /* Padding for the button */
-    border: none;              /* Remove default border */
-    border-radius: 8px;        /* Rounded corners for a smooth look */
-    cursor: pointer;          /* Cursor changes to a pointer on hover */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
 
-.book-button:hover {
-    background-color: #0056b3; /* Darker blue for hover effect */
-    transform: scale(1.05);     /* Slight zoom-in effect */
-}
+    /* Add a specific class for the logout button */
+    .logout-btn {
+        background-color: #007bff; /* Primary blue color for the button */
+        color: white;              /* White text color */
+        font-size: 14px;           /* Font size for the button text */
+        font-weight: bold;         /* Bold text to make it stand out */
+        padding: 10px 20px;        /* Padding for the button */
+        border: none;              /* Remove default border */
+        border-radius: 8px;        /* Rounded corners for a smooth look */
+        cursor: pointer;          /* Cursor changes to a pointer on hover */
+        transition: all 0.3s ease; /* Smooth transition for hover effect */
+    }
 
+    .logout-btn:hover {
+        background-color: #0056b3; /* Darker blue for hover effect */
+        transform: scale(1.05);     /* Slight zoom-in effect */
+    }
 
-.book-button:focus {
-    outline: none;             /* Remove default focus outline */
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Glow effect on focus */
-}
-
-.book-button:active {
-    background-color: #004085; /* Even darker blue when the button is pressed */
-    transform: scale(1);        /* Remove zoom-in effect when pressed */
-}
-}
-
-
+    .logout-btn:focus {
+        outline: none;             /* Remove default focus outline */
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Glow effect on focus */
+    }
 {% endblock style %}
-{% block frame %}
 
-  <div class="profile-card">
-      {% if info[4] == None or info | length == 3 %}
-    <div>
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small_2x/user-profile-icon-free-vector.jpg"
-             alt="Default profile image">
-    </div>
-    {% else %}
-    <div>
-        <img src="{{ info[3] }}" alt="User profile image">
-    </div>
-    {% endif %}
+{% block frame %}
+    <div class="profile-card">
+        <div>
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small_2x/user-profile-icon-free-vector.jpg"
+                alt="Default profile image">
+        </div>
+
         <h3>Account Information</h3>
 
         {% if info[0] == None %}
-        <p><strong>Username </strong>unavaible</p>
+            <p><strong>Username:</strong> Unavailable</p>
         {% else %}
-        <p><strong>Username:</strong> {{ info[1] }}</p>
+            <p><strong>Username:</strong> {{ info[1] }}</p>
         {% endif %}
 
         {% if info[1] == None %}
-        <p><strong>email:</strong> No data</p>
+            <p><strong>Email:</strong> No data</p>
         {% else %}
-        <p><strong>email:</strong> {{ info[2] }}</p>
+            <p><strong>Email:</strong> {{ info[2] }}</p>
         {% endif %}
 
         {% if info[2] == None %}
-        <p><strong>phone number:</strong> No data</p>
+            <p><strong>Phone number:</strong> No data</p>
         {% else %}
-        <p><strong>phone number:</strong> {{ info[3] }}</p>
+            <p><strong>Phone number:</strong> {{ info[3] }}</p>
         {% endif %}
-      <a href="{{ url_for('login') }}" class="btn btn-sm btn-outline-secondary" role="button">Log out</a>
+
+        <!-- Log out button with specific class -->
+        <a href="{{ url_for('login') }}" class="btn logout-btn" role="button">Log out</a>
     </div>
-
-
-  </div>
 {% endblock frame %}

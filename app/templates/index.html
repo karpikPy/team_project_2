@@ -3,42 +3,117 @@
     <title>Dynamic Line of Blocks</title>
 {% endblock title %}
 {% block style %}
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: #f1f1f1; /* Default text color (white) */
+    }
 
+    .container {
+        width: 90%;
+        max-width: 800px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column; /* Ensures vertical stacking */
+        gap: 20px; /* Adds spacing between items */
+    }
 
-        .container {
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for overlay effect */
-            width: 80%; /* Set width as a percentage of the viewport */
-            max-width: 400px; /* Maximum width to prevent it from getting too large */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative; /* Keep it on top of the iframe */
-            z-index: 1; /* Bring it to the front */
-            margin: 20px auto; /* Center it and add margin */
-            max-height: 80vh; /* Maximum height of the card */
-            overflow-y: auto; /* Enable scrolling if content exceeds height */
-        }
-        .block {
-            width: 50px;
-            height: 50px;
-            background-color: lightblue;
-            text-align: center;
-            line-height: 50px;
-            font-weight: bold;
-        }
+    .house-card {
+        background-color: #2a2a2a; /* Dark background for cards */
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers content */
+        text-align: center;
+    }
 
+    .house-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .details {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .details strong {
+        color: #4fb3ff; /* Highlighted text color for labels */
+    }
+
+    .details span {
+        color: #f1f1f1; /* White text for values */
+    }
+
+    .block {
+        width: 40px;
+        height: 40px;
+        background-color: #4fb3ff; /* Blue color */
+        color: #1a1a1a; /* Dark text for contrast */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #4fb3ff; /* Blue button */
+        color: #1a1a1a; /* Dark text */
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #3498db; /* Slightly darker on hover */
+    }
+
+    /* Scrollable Vertical List */
+    .scrollable-container {
+        max-height: 80vh; /* Restricts height to 80% of viewport */
+        overflow-y: auto; /* Enables vertical scrolling */
+    }
+
+    .scrollable-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .scrollable-container::-webkit-scrollbar-thumb {
+        background-color: #4fb3ff;
+        border-radius: 10px;
+    }
+</style>
 {% endblock style %}
 {% block frame %}
-
-    <div class="container">
-    {% for house in houses %}
-    <div><img src="data:image/jpeg;base64, {{ house[6] }}" alt="{{ house[6] }}"></div>
-    <p>{{ house[2] }}</p>
-    <form action="{{ url_for('house_details', house_id=house[0]) }}">
-        <div class="block">{{ house[0] }}</div>
-        <button type="submit" name="which" value="{{ house[0] }}">More Info</button>
-    </form>
-    {% endfor %}
+    <div class="scrollable-container">
+        <div class="container">
+            {% for house in houses %}
+            <div class="house-card">
+                <img class="house-image" src="data:image/jpeg;base64, {{ house[6] }}" alt="House Image">
+                <div class="details">
+                    <p><strong>Region:</strong> <span>{{ house[3] }}</span></p>
+                    <p><strong>Price:</strong> <span>${{ house[7] }}</span></p>
+                </div>
+                <div class="block">{{ house[0] }}</div>
+                <form action="{{ url_for('house_details', house_id=house[0]) }}">
+                    <button type="submit" name="which" value="{{ house[0] }}">More Info</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock frame %}
